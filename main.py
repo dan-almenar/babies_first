@@ -9,8 +9,8 @@ from kivy.graphics import Color, Ellipse, Line
 from kivy.core.audio import SoundLoader
 from kivy.core.window import Window
 
-
 from random import random
+from datetime import datetime
 
 Window.clearcolor = 1, 1, 1, 1
 Window.icon = 'media/numbers/toys-icon.png'
@@ -156,11 +156,16 @@ class PaintWidget(Widget):
             d = 10.
             Ellipse(pos=(touch.x - d / 2, touch.y - d / 2), size=(d, d))
             touch.ud['line'] = Line(points=(touch.x, touch.y), width=1.5)
+            print(color)
 
     def on_touch_move(self, touch):
         touch.ud['line'].points += [touch.x, touch.y]
 
     def clear_canvas(self):
+        self.canvas.clear()
+
+    def save_image(self):
+        self.export_to_png('babies_first_{}.png'.format(datetime.now().replace(microsecond=0)))
         self.canvas.clear()
 
 

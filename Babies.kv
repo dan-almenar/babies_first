@@ -376,6 +376,10 @@ WindowManager:
             allow_stretch: True
             keep_ratio: False
             PaintWidget:
+                padding: 10
+                spacing: 5
+                width: root.width
+                height: root.height
                 id: painter
                 pos: 0, 40
                 canvas.before:
@@ -397,6 +401,15 @@ WindowManager:
                 painter.clear_canvas()
                 app.root.current = 'main_window'
                 root.manager.transition.direction = 'right'
+        Button:
+            id: save_image
+            size_hint_y: None
+            pos: 0, 0
+            height: 40
+            text: 'Save'
+            font_size: '20sp'
+            on_press:
+                painter.save_image()
         Button:
             id: clear_canvas
             size_hint_y: None
